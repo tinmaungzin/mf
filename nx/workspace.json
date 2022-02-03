@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "kyc": "apps/kyc",
+    "kyc-e2e": "apps/kyc-e2e",
+    "shell": "apps/shell",
+    "shell-e2e": "apps/shell-e2e"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "root": "apps/kyc",
+  "sourceRoot": "apps/kyc/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/kyc",
+        "index": "apps/kyc/src/index.html",
+        "baseHref": "/",
+        "main": "apps/kyc/src/main.js",
+        "polyfills": "apps/kyc/src/polyfills.js",
+        "tsConfig": "apps/kyc/tsconfig.app.json",
+        "assets": ["apps/kyc/src/favicon.ico", "apps/kyc/src/assets"],
+        "styles": ["apps/kyc/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/kyc/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/kyc/src/environments/environment.js",
+              "with": "apps/kyc/src/environments/environment.prod.js"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "kyc:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "kyc:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kyc/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/kyc"],
+      "options": {
+        "jestConfig": "apps/kyc/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
